@@ -8,11 +8,11 @@ type Delivery {
 }
 
 type StockBalance {
-   stockBalanceId: ID!
-   date: Date
-   supplier: Supplier
-   quantityVial: Int
-   quantityDose: Int
+    stockBalanceId: ID!
+    date: Date
+    supplier: Supplier
+    quantityVial: Int
+    quantityDose: Int
 }
 
 type Supplier {
@@ -48,4 +48,4 @@ type Query {
     listStockBalances: [StockBalance]
     listSuppliers: [Supplier]
     listConsumptions: [Consumption]
-  }
+}
