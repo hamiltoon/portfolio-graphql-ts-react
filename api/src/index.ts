@@ -3,12 +3,14 @@ import { addMocksToSchema } from '@graphql-tools/mock'
 import { mockServer } from '@graphql-tools/mock'
 import { typeDefs as scalarTypeDefs, resolvers } from 'graphql-scalars'
 import express from 'express'
+import mocks from './dataMock'
 import { graphqlHTTP } from 'express-graphql'
 import { typeDefs } from './graphqlSchema'
 
 const schema = makeExecutableSchema({ typeDefs: [...scalarTypeDefs, typeDefs] })
 const schemaWithMocks = addMocksToSchema({
   schema,
+  mocks,
 
   //   resolvers: (store) => ({
   //     Mutation: {
