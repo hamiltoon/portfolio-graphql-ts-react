@@ -1,33 +1,24 @@
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import { addMocksToSchema } from '@graphql-tools/mock'
-import { mockServer } from '@graphql-tools/mock'
+// import { mockServer } from '@graphql-tools/mock'
 import { typeDefs as scalarTypeDefs, resolvers } from 'graphql-scalars'
 import express from 'express'
 import mocks from './dataMock'
 import { graphqlHTTP } from 'express-graphql'
-import { typeDefs } from './graphqlSchema'
+import { typeDefsOperation, typeDefsSchema } from './graphqlSchema'
+import cors from 'cors'
 
-const schema = makeExecutableSchema({ typeDefs: [...scalarTypeDefs, typeDefs] })
+const schema = makeExecutableSchema({
+  typeDefs: [...scalarTypeDefs, typeDefsSchema],
+})
 const schemaWithMocks = addMocksToSchema({
   schema,
   mocks,
-
-  //   resolvers: (store) => ({
-  //     Mutation: {
-  //       changeMyName: (_, { newName }) => {
-  //         // special singleton types `Query` and `Mutation` will use the key `ROOT`
-
-  //         // this will set the field value for the `User` entity referenced in field
-  //         // `me` of the singleton `Query`
-  //         store.set('Query', 'ROOT', 'me', { name: newName })
-
-  //         return store.get('Query', 'ROOT', 'me')
-  //       },
-  //     },
-  //   }),
 })
 
 const app = express()
+app.use(cors())
+
 app.use(
   '/graphql',
   graphqlHTTP({
