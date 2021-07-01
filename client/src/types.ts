@@ -8,14 +8,14 @@ export type CapacityId = number
 
 export type Capacity = {
   id: CapacityId
-  preliminaryCapacityDate: Date
+  preliminaryCapacityDate: string
   capacityDose: number
 };
 export type ConsumptionId = number
 
 export type Consumption = {
   id: number
-  consumptionDate: Date
+  consumptionDate: string
   supplier: Supplier
   quantityVial: number
 };
@@ -24,8 +24,8 @@ export type DeliveryId = number
 
 export type Delivery = {
   id: number
-  deliveryDate: Date
-  plannedDeliveryDate: Date
+  deliveryDate: string
+  plannedDeliveryDate: string
   supplier: Supplier
   quantityVial: number
   gnlReceiver: string
@@ -35,8 +35,8 @@ export type OrderId = number
 
 export type Order = {
   id: OrderId
-  orderDate: Date
-  desiredDeliveryDate: Date
+  orderDate: string
+  desiredDeliveryDate: string
   quantityDose: number
   gnlReceiver: string
 };
@@ -45,7 +45,7 @@ export type StockBalanceId = number
 
 export type StockBalance = {
   id: StockBalanceId
-  date: Date
+  date: string
   supplier: Supplier
   quantityVial: number
   quantityDose: number
@@ -55,6 +55,6 @@ export type SupplierId = number
 
 export type Supplier = {
   id: SupplierId
-  name: String
-  createdAt: Date
+  name: string
+  createdAt: string
 };
