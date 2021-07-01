@@ -42,6 +42,17 @@ export const isEmailAddress =
     return hasError ? (message ? message : 'The email address is not valid') : undefined
   }
 
+export const isPositiveInteger =
+  (message?: ErrorMessage): Rule =>
+  (value: Value) => {
+    const POSITIVE_INTEGER_REGEX = /^[1-9]\d*$/i
+
+    const hasError = !valueIsEmpty(value) && !POSITIVE_INTEGER_REGEX.test(value)
+
+    return hasError ? (message ? message : 'Need to be a positive whole number (1 och higher).') : undefined
+  }
+
+  
 const runValidators = (currentRules: Rule[], value: Value) => {
   const allErrors = currentRules.map((validator) => validator(value)).filter((_) => _)
   return first(allErrors)

@@ -1,4 +1,4 @@
-import { notEmpty, hasMaxLength, isEmailAddress, validate } from './validation'
+import { notEmpty, hasMaxLength, isEmailAddress, isPositiveInteger, validate } from './validation'
 
 describe('validation', () => {
   describe('notEmpty', () => {
@@ -38,6 +38,21 @@ describe('validation', () => {
     })
     test('handle valid false', () => {
       expect(isEmailAddress('Validation error')('some-invalid-value')).toEqual('Validation error')
+    })
+  })
+
+  describe('isPositiveInteger', () => {
+    test('handle valid true', () => {
+      expect(isPositiveInteger('some-validation-messages')(3)).toEqual(undefined)
+    })
+    test('handle undefined', () => {
+      expect(isPositiveInteger()()).toEqual(undefined)
+    })
+    test('handle valid false', () => {
+      expect(isPositiveInteger('Validation error')(-1)).toEqual('Validation error')
+    })
+    test('handle zero false', () => {
+      expect(isPositiveInteger('Validation error')(0)).toEqual('Validation error')
     })
   })
 
