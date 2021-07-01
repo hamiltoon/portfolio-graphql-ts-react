@@ -7,6 +7,7 @@ import { DateTime } from 'luxon'
 import { InputFormField, validate, notEmpty } from '../form'
 import { Supplier } from '../types'
 import { deleteSupplier, postSupplier, putSupplier } from '../api/suppliers'
+import { routeMapping } from '../Routes'
 
 const SupplierForm = (props: { supplier?: Supplier }) => {
   const { supplier } = props
@@ -15,7 +16,7 @@ const SupplierForm = (props: { supplier?: Supplier }) => {
   const handleDeleteOrder = () => {
     if (supplier?.id) {
       deleteSupplier(supplier.id).then(() => {
-        history.push(`/suppliers`)
+        history.push(routeMapping.suppliers.route)
       })
     }
   }
@@ -26,7 +27,7 @@ const SupplierForm = (props: { supplier?: Supplier }) => {
       : () => postSupplier(values)
 
     return submitAction().then((savedSupplier) => {
-      if (savedSupplier.type === 'SUCCESS') history.push(`/suppliers`)
+      if (savedSupplier.type === 'SUCCESS') history.push(routeMapping.suppliers.route)
     })
   }
   return (

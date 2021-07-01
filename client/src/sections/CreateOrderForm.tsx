@@ -7,13 +7,14 @@ import { InputFormField, validate, notEmpty, isPositiveInteger } from '../form'
 import { postOrder } from '../api/orders'
 import { Order } from '../types'
 import { DateTime } from 'luxon'
+import { routeMapping } from '../Routes'
 
 const CreateOrderForm = () => {
   const history = useHistory()
 
   const onSubmit = ({ ...values }: Order) => {
     return postOrder(values).then((newOrder) => {
-      if (newOrder.type === 'SUCCESS') history.push(`/list-orders`)
+      if (newOrder.type === 'SUCCESS') history.push(routeMapping.orders.route)
     })
   }
   return (
