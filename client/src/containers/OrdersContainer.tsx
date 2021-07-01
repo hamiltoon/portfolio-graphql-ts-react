@@ -12,7 +12,6 @@ const OrdersContainer = (props: Props) => {
   const [orderData, setOrders] = useState<RemoteData<Error, Order[]>>({
     type: 'NOT_ASKED',
   })
-  console.log({ orderData })
   useEffect(() => {
     if (orderData.type === 'NOT_ASKED') {
       setOrders({ type: 'LOADING' })

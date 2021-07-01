@@ -3,59 +3,63 @@ import { Button, Form } from 'semantic-ui-react'
 import { Form as FinalForm, Field } from 'react-final-form'
 import { useHistory } from 'react-router'
 
-import {
-  InputFormField,
-  TextAreaFormField,
-  validate,
-  notEmpty,
-  hasMaxLength,
-  isEmailAddress,
-} from '../form'
-import { Order } from '../generated/graphql'
-// import { postPost } from '../api/posts'
+import { InputFormField, validate, notEmpty, isPositiveInteger } from '../form'
+import { postOrder } from '../api/orders'
+import { Order } from '../types'
+import { DateTime } from 'luxon'
 
 const CreateOrderForm = () => {
-  // const history = useHistory()
+  const history = useHistory()
 
   const onSubmit = ({ ...values }: Order) => {
     console.log(values)
-    // return postPost(values).then((newOrder: Order) => {
-    //   if (newOrder.type === 'SUCCESS') history.push(`/post/${newOrder.data.id}`)
-    // })
+    return postOrder(values).then((newOrder) => {
+      if (newOrder.type === 'SUCCESS') history.push(`/list-orders`)
+    })
   }
   return (
     <FinalForm
       onSubmit={onSubmit}
+      initialValues={{
+        orderDate: DateTime.now().toFormat('yyyy-MM-dd'),
+      }}
       subscription={{
         submitting: true,
         hasValidationErrors: true,
         pristine: true,
       }}
       validate={validate<Order>({
-        orderId: [],
+        id: [],
         orderDate: [notEmpty()],
-        desiredDeliveryDate: [],
-        quantityDose: [],
+        desiredDeliveryDate: [notEmpty()],
+        quantityDose: [notEmpty(), isPositiveInteger()],
         gnlReceiver: [],
-        __typename: [],
       })}
       render={({ handleSubmit, form, submitting, pristine }) => {
         return (
           <Form loading={submitting} onSubmit={handleSubmit}>
             <Field
+              name="orderDate"
               label="Order date"
               type="date"
-              name="orderDate"
+              disabled
               component={InputFormField}></Field>
-            {/* <Field
-              label="Preamble"
+            <Field
+              name="desiredDeliveryDate"
+              label="Desired delivery date"
+              type="date"
+              component={InputFormField}></Field>
+            <Field
+              name="gnlReceiver"
+              label="GNL-receiver"
               type="text"
-              name="preamble"
-              component={TextAreaFormField}></Field>
-            <Field label="Text" type="text" name="body" component={TextAreaFormField}></Field>
-            <Field label="Author" type="text" name="author" component={InputFormField}></Field>
-            <Field label="Email" type="email" name="email" component={InputFormField}></Field>
-            <Field label="Date" type="date" name="date" component={InputFormField}></Field> */}
+              component={InputFormField}></Field>
+            <Field
+              name="quantityDose"
+              label="Quantity (dose)"
+              type="number"
+              component={InputFormField}></Field>
+
             <Form.Group>
               <Form.Field control={Button} type="submit">
                 Create

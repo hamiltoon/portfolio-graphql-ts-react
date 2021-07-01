@@ -1,7 +1,7 @@
 import React from 'react'
 import { Input, Form, FormFieldProps } from 'semantic-ui-react'
 
-const InputFormField = ({ input, meta, label }: FormFieldProps) => {
+const InputFormField = ({ input, meta, label, disabled }: FormFieldProps) => {
   return (
     <Form.Field
       error={
@@ -13,6 +13,7 @@ const InputFormField = ({ input, meta, label }: FormFieldProps) => {
           : undefined
       }
       control={Input}
+      disabled={disabled}
       label={label}
       {...input}></Form.Field>
   )

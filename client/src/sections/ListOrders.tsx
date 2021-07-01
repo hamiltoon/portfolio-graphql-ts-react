@@ -1,8 +1,9 @@
 import React from 'react'
-import { Order, RemoteData } from '../types'
 import { Loader, Table } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 // import { DateTime } from 'luxon'
+
+import { Order, RemoteData } from '../types'
 
 type Props = { orderData: RemoteData<Error, Order[]> }
 
