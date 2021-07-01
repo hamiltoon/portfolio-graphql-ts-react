@@ -4,6 +4,7 @@ import { Input, Form, FormFieldProps } from 'semantic-ui-react'
 const InputFormField = ({ input, meta, label, disabled }: FormFieldProps) => {
   return (
     <Form.Field
+      {...input}
       error={
         meta.submitFailed && meta.error
           ? {
@@ -14,8 +15,7 @@ const InputFormField = ({ input, meta, label, disabled }: FormFieldProps) => {
       }
       control={Input}
       disabled={disabled}
-      label={label}
-      {...input}></Form.Field>
+      label={label}></Form.Field>
   )
 }
 export default InputFormField
