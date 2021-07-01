@@ -1,65 +1,59 @@
-import { gql, useQuery } from '@apollo/client'
 import React from 'react'
-import { Order } from '../generated/graphql'
-import {
-  Segment,
-  Container,
-  Header,
-  List,
-  Loader as SemanticLoader,
-  Button,
-} from 'semantic-ui-react'
+import { Order, RemoteData } from '../types'
+import { Loader, Table } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
-import { DateTime } from 'luxon'
+// import { DateTime } from 'luxon'
 
-const ORDERS = gql`
-  {
-    listOrders {
-      orderId
-      gnlReceiver
-      orderDate
-      desiredDeliveryDate
-    }
-  }
-`
-// type Props = { loading: boolean, error?: ApolloError, children: ReactNode }
+type Props = { orderData: RemoteData<Error, Order[]> }
 
-// const Loader = ({ error, loading, children }: Props) => {
-//   if (error) return <p>Error</p>
-//   return loading ? <SemanticLoader /> : { children }
-// }
+const ListOrders = (props: Props) => {
+  const { orderData } = props
 
-const ListOrders = () => {
-  const { loading, data } = useQuery<Record<'listOrders', Order[]>>(ORDERS)
-  console.log(data?.listOrders)
-  return (
-    <Container>
-      <Header>Orders</Header>
-      <Segment>
-        {loading ? (
-          <SemanticLoader />
-        ) : (
-          <List divided relaxed>
-            {data?.listOrders.map((order) => (
-              <List.Item key={order.orderId}>
-                <List.Content floated="left">
-                  <List.Header exact to={`/order/${order.orderId}`} as={NavLink}>
-                    {DateTime.fromISO(order.orderDate).toLocaleString()}
-                  </List.Header>
-                  <List.Description exact to={`/order/${order.orderId}`} as={NavLink}>
+  switch (orderData.type) {
+    case 'NOT_ASKED':
+      return <p>Not asked</p>
+    case 'LOADING':
+      return (
+        <Loader active inline="centered">
+          Loading
+        </Loader>
+      )
+
+    case 'SUCCESS':
+      return (
+        <Table celled>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Order id</Table.HeaderCell>
+              <Table.HeaderCell>GNL-receiver</Table.HeaderCell>
+              <Table.HeaderCell>Order date</Table.HeaderCell>
+              <Table.HeaderCell>Desired delivery date</Table.HeaderCell>
+              <Table.HeaderCell>Quantity (dose)</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            {orderData.data.map((order) => (
+              <Table.Row key={order.id}>
+                <Table.Cell>{order.id}</Table.Cell>
+                <Table.Cell>
+                  <NavLink exact to={`/order/${order.id}`}>
                     {order.gnlReceiver}
-                  </List.Description>
-                </List.Content>
-                <List.Content floated="right">
-                  <Button>Edit</Button>
-                </List.Content>
-              </List.Item>
+                  </NavLink>
+                </Table.Cell>
+                {/* IF order.orderDate would be a JS date object */}
+                {/* <Table.Cell>{DateTime.fromISO(order.orderDate).toLocaleString()}</Table.Cell>  */}
+                <Table.Cell>{order.orderDate}</Table.Cell>
+                <Table.Cell>{order.desiredDeliveryDate}</Table.Cell>
+                <Table.Cell>{order.quantityDose}</Table.Cell>
+              </Table.Row>
             ))}
-          </List>
-        )}
-      </Segment>
-    </Container>
-  )
+          </Table.Body>
+        </Table>
+      )
+    case 'FAILURE':
+      return <p>Failed load the posts</p>
+  }
 }
 
 export default ListOrders

@@ -1,6 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { Dropdown, Menu } from 'semantic-ui-react'
+import { routeMapping } from '../Routes'
 
 const Navigation = () => (
   <nav>
@@ -11,7 +12,7 @@ const Navigation = () => (
         </NavLink>
       </Menu.Item>
       <Menu.Item>
-        <NavLink exact to="/list-orders">
+        <NavLink exact to={routeMapping.orders.route}>
           Orders
         </NavLink>
       </Menu.Item>
@@ -44,7 +45,7 @@ const Navigation = () => (
         <Dropdown item icon="plus">
           <Dropdown.Menu>
             <Dropdown.Item>
-              <NavLink exact to="/create-order">
+              <NavLink exact to={routeMapping.createOrder.route}>
                 Create order
               </NavLink>
             </Dropdown.Item>
