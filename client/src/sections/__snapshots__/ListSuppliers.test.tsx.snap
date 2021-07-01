@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Suppliers list before loading 1`] = `null`;
+
+exports[`Suppliers list error 1`] = `
+<div
+  className="ui message"
+>
+  <div
+    className="header"
+  >
+    Failed load the suppliers: 
+  </div>
+  <p>
+    some-message
+  </p>
+</div>
+`;
+
+exports[`Suppliers list loading 1`] = `
+<div
+  className="ui active text centered inline loader"
+>
+  Loading
+</div>
+`;
+
+exports[`Suppliers list success 1`] = `
+<table
+  className="ui celled table"
+>
+  <thead
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <th
+        className=""
+      >
+        Supplier id
+      </th>
+      <th
+        className=""
+      >
+        Name
+      </th>
+      <th
+        className=""
+      >
+        Created at
+      </th>
+      <th
+        className=""
+      />
+    </tr>
+  </thead>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className=""
+      >
+        1
+      </td>
+      <td
+        className=""
+      >
+        <NavlinkMock
+          exact={true}
+          to="/suppliers/1"
+        >
+          some-supplier-name
+        </NavlinkMock>
+      </td>
+      <td
+        className=""
+      >
+        some-creation-date
+      </td>
+      <td
+        className="right aligned"
+      >
+        <NavlinkMock
+          exact={true}
+          to="/suppliers/1/edit"
+        >
+          <button
+            className="ui button"
+            onClick={[Function]}
+          >
+            Edit
+          </button>
+        </NavlinkMock>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

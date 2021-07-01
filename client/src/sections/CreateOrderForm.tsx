@@ -17,7 +17,7 @@ const CreateOrderForm = () => {
     })
   }
   return (
-    <FinalForm
+    <FinalForm<Order>
       onSubmit={onSubmit}
       initialValues={{
         orderDate: DateTime.now().toFormat('yyyy-MM-dd'),

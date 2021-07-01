@@ -1,18 +1,18 @@
 import React from 'react'
-import { Loader, Table, Button } from 'semantic-ui-react'
-import { NavLink, useHistory } from 'react-router-dom'
-// import { DateTime } from 'luxon'
+import { Loader, Table, Button, Message } from 'semantic-ui-react'
+import { NavLink } from 'react-router-dom'
 
 import { Supplier, RemoteData } from '../types'
+import { routeMapping } from '../Routes'
 
 type Props = { supplierData: RemoteData<Error, Supplier[]> }
 
-const ListOrders = (props: Props) => {
+const ListSuppliers = (props: Props) => {
   const { supplierData } = props
-  const history = useHistory()
+
   switch (supplierData.type) {
     case 'NOT_ASKED':
-      return <p>Not asked</p>
+      return null
     case 'LOADING':
       return (
         <Loader active inline="centered">
@@ -37,13 +37,15 @@ const ListOrders = (props: Props) => {
               <Table.Row key={supplier.id}>
                 <Table.Cell>{supplier.id}</Table.Cell>
                 <Table.Cell>
-                  <NavLink exact to={`/order/${supplier.id}`}>
+                  <NavLink exact to={routeMapping.viewSuppliers.route(String(supplier.id))}>
                     {supplier.name}
                   </NavLink>
                 </Table.Cell>
                 <Table.Cell>{supplier.createdAt}</Table.Cell>
                 <Table.Cell textAlign="right">
-                  <Button onClick={() => history.push(`/order/${supplier.id}/edit`)}>Edit</Button>
+                  <NavLink exact to={routeMapping.editSuppliers.route(String(supplier.id))}>
+                    <Button>Edit</Button>
+                  </NavLink>
                 </Table.Cell>
               </Table.Row>
             ))}
@@ -51,8 +53,13 @@ const ListOrders = (props: Props) => {
         </Table>
       )
     case 'FAILURE':
-      return <p>Failed load the posts</p>
+      return (
+        <Message>
+          <Message.Header>Failed load the suppliers: </Message.Header>
+          <p>{supplierData.error.message}</p>
+        </Message>
+      )
   }
 }
 
-export default ListOrders
+export default ListSuppliers

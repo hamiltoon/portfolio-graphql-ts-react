@@ -25,7 +25,7 @@ export async function getSupplier(orderId: SupplierId): Promise<RemoteData<Error
   }
 }
 
-export async function postSupplier(data: SupplierId): Promise<RemoteData<Error, Supplier>> {
+export async function postSupplier(data: Supplier): Promise<RemoteData<Error, Supplier>> {
   try {
     const response = await axios.post(`https://retoolapi.dev/1kzcEC/suppliers`, data)
 

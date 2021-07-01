@@ -1,5 +1,5 @@
 import React from 'react'
-import { Loader, Table } from 'semantic-ui-react'
+import { Loader, Table, Message } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 // import { DateTime } from 'luxon'
 
@@ -12,7 +12,7 @@ const ListOrders = (props: Props) => {
 
   switch (orderData.type) {
     case 'NOT_ASKED':
-      return <p>Not asked</p>
+      return null
     case 'LOADING':
       return (
         <Loader active inline="centered">
@@ -53,7 +53,12 @@ const ListOrders = (props: Props) => {
         </Table>
       )
     case 'FAILURE':
-      return <p>Failed load the posts</p>
+      return (
+        <Message>
+          <Message.Header>Failed load the orders: </Message.Header>
+          <p>{orderData.error.message}</p>
+        </Message>
+      )
   }
 }
 
