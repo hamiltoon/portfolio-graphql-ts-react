@@ -55,8 +55,13 @@ const Navigation = () => (
               </NavLink>
             </Dropdown.Item>
             <Dropdown.Item>
-              <NavLink exact to={routeMapping.addSuppliers.route}>
+              <NavLink exact to={routeMapping.addSupplier.route}>
                 Create supplier
+              </NavLink>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <NavLink exact to={routeMapping.addDelivery.route}>
+                Create delivery
               </NavLink>
             </Dropdown.Item>
           </Dropdown.Menu>

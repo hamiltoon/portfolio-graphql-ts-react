@@ -2,19 +2,19 @@ import React from 'react'
 
 import { Segment, Container, Header } from 'semantic-ui-react'
 
-import SupplierContainer from '../containers/SupplierContainer'
-import SuppliersForm from '../sections/SupplierForm'
+import DeliveryForm from '../sections/DeliveryForm'
+import DeliveryFormContainer from '../containers/DeliveryFormContainer'
 
-const EditSupplierPage = () => {
+const DeliveryFormPage = () => {
   return (
     <Container>
-      <Header>Edit supplier</Header>
+      <Header>Delivery</Header>
       <Segment>
-        <SupplierContainer
+        <DeliveryFormContainer
           render={({ supplierData }) => {
             switch (supplierData.type) {
               case 'SUCCESS':
-                return <SuppliersForm supplier={supplierData.data} />
+                return <DeliveryForm suppliers={supplierData.data}></DeliveryForm>
               default:
                 return <p></p>
             }
@@ -25,4 +25,4 @@ const EditSupplierPage = () => {
   )
 }
 
-export default EditSupplierPage
+export default DeliveryFormPage

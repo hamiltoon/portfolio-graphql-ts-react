@@ -1,13 +1,15 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Message } from 'semantic-ui-react'
+import DeliveryFormPage from './pages/DeliveryFormPage'
+
 import EditSupplierPage from './pages/EditSupplierPage'
 import ListDeliveriesPage from './pages/ListDeliveriesPage'
-
 import ListOrdersPage from './pages/ListOrdersPage'
 import ListSuppliersPage from './pages/ListSuppliersPage'
 import CreateOrder from './sections/CreateOrderForm'
-import SuppliersForm from './sections/SuppliersForm'
+
+import SuppliersForm from './sections/SupplierForm'
 
 const RouteNotImplemented = () => {
   console.error('Route not implemented')
@@ -39,9 +41,13 @@ export const routeMapping = {
     route: (supplierId: string) => `/suppliers/${supplierId}`,
     component: SuppliersForm,
   },
-  addSuppliers: {
+  addSupplier: {
     route: `/suppliers/add`,
     component: SuppliersForm,
+  },
+  addDelivery: {
+    route: `/deliveries/add`,
+    component: DeliveryFormPage,
   },
 }
 
@@ -68,8 +74,14 @@ const Routes = () => {
 
       <Route
         exact
-        path={routeMapping.addSuppliers.route}
-        component={routeMapping.addSuppliers.component}
+        path={routeMapping.addSupplier.route}
+        component={routeMapping.addSupplier.component}
+      />
+
+      <Route
+        exact
+        path={routeMapping.addDelivery.route}
+        component={routeMapping.addDelivery.component}
       />
 
       <Route
@@ -91,7 +103,6 @@ const Routes = () => {
       />
 
       <Route path="*" component={RouteNotImplemented} />
-      {/* <Route path="/post/:id" component={ListBlogPostPage} /> */}
     </Switch>
   )
 }

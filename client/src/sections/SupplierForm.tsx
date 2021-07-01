@@ -8,7 +8,7 @@ import { InputFormField, validate, notEmpty } from '../form'
 import { Supplier } from '../types'
 import { deleteSupplier, postSupplier, putSupplier } from '../api/suppliers'
 
-const SuppliersForm = (props: { supplier?: Supplier }) => {
+const SupplierForm = (props: { supplier?: Supplier }) => {
   const { supplier } = props
   const history = useHistory()
 
@@ -79,4 +79,4 @@ const SuppliersForm = (props: { supplier?: Supplier }) => {
   )
 }
 
-export default SuppliersForm
+export default SupplierForm
