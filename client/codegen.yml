@@ -1,16 +1,12 @@
 overwrite: true
 schema: "http://localhost:4000/graphql"
-# documents: "*.graphql"
+# documents: "../api/src/*.graphql"
 generates:
   src/generated/graphql.tsx:
     hooks:
       afterAllFileWrite:
         - prettier src/generated --write
     plugins:
-      - "typescript"
-      # - "typescript-operations"
-      - "typescript-react-apollo"
-      # - "typescript-document-nodes"
-  # ./graphql.schema.json:
-  #   plugins:
-  #     - "introspection"
+      - typescript
+      # - typescript-operations
+      # - typescript-react-apollo
