@@ -16,6 +16,11 @@ const Navigation = () => (
           Orders
         </NavLink>
       </Menu.Item>
+      <Menu.Item>
+        <NavLink exact to={routeMapping.deliveries.route}>
+          Deliveries
+        </NavLink>
+      </Menu.Item>
       {/* <Menu.Item>
         <NavLink exact to="/list-capacity">
           Capacity

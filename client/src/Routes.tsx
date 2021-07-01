@@ -1,6 +1,8 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import { Message } from 'semantic-ui-react'
 import EditSupplierPage from './pages/EditSupplierPage'
+import ListDeliveriesPage from './pages/ListDeliveriesPage'
 
 import ListOrdersPage from './pages/ListOrdersPage'
 import ListSuppliersPage from './pages/ListSuppliersPage'
@@ -14,12 +16,16 @@ const RouteNotImplemented = () => {
 
 export const routeMapping = {
   orders: {
-    route: '/list-orders',
+    route: '/orders/list',
     component: ListOrdersPage,
   },
   suppliers: {
-    route: '/suppliers',
+    route: '/suppliers/list',
     component: ListSuppliersPage,
+  },
+  deliveries: {
+    route: '/deliveries/list',
+    component: ListDeliveriesPage,
   },
   createOrder: {
     route: '/create-order',
@@ -46,6 +52,16 @@ const Routes = () => {
 
       <Route
         exact
+        path="/"
+        component={() => (
+          <Message>
+            <Message.Header>Start</Message.Header>
+          </Message>
+        )}
+      />
+
+      <Route
+        exact
         path={routeMapping.createOrder.route}
         component={routeMapping.createOrder.component}
       />
@@ -68,9 +84,13 @@ const Routes = () => {
         component={routeMapping.suppliers.component}
       />
 
-      <Route path="*" component={RouteNotImplemented} />
+      <Route
+        exact
+        path={routeMapping.deliveries.route}
+        component={routeMapping.deliveries.component}
+      />
 
-      {/* <Route exact path="/" component={ListBlogPostsPage} /> */}
+      <Route path="*" component={RouteNotImplemented} />
       {/* <Route path="/post/:id" component={ListBlogPostPage} /> */}
     </Switch>
   )

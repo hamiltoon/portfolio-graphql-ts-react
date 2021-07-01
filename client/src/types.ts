@@ -24,9 +24,9 @@ export type DeliveryId = number
 
 export type Delivery = {
   id: number
-  deliveryDate: string
-  plannedDeliveryDate: string
-  supplier: Supplier
+  deliveryDate?: string
+  plannedDeliveryDate?: string
+  supplierId: Supplier
   quantityVial: number
   gnlReceiver: string
 };

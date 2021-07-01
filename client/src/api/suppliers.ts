@@ -52,9 +52,9 @@ export async function putSupplier(
   }
 }
 
-export async function deleteSupplier(orderId: SupplierId): Promise<RemoteData<Error, {}>> {
+export async function deleteSupplier(supplierId: SupplierId): Promise<RemoteData<Error, {}>> {
   try {
-    const response = await axios.delete(`https://retoolapi.dev/1kzcEC/suppliers/${orderId}`)
+    const response = await axios.delete(`https://retoolapi.dev/1kzcEC/suppliers/${supplierId}`)
 
     if (response.status > 299) throw await response
 
