@@ -8,6 +8,7 @@ import { Delivery, Supplier } from '../types'
 import { deleteDelivery, postDelivery, putDelivery } from '../api/deliveries'
 import { routeMapping } from '../Routes'
 import SelectFormField from '../form/SelectFormField'
+import { isPositiveInteger } from '../form/validation'
 
 const DeliveryForm = (props: { delivery?: Delivery, suppliers: Supplier[] }) => {
   const { delivery, suppliers } = props
@@ -44,7 +45,7 @@ const DeliveryForm = (props: { delivery?: Delivery, suppliers: Supplier[] }) => 
         id: [],
         plannedDeliveryDate: [notEmpty()],
         deliveryDate: [],
-        quantityVial: [notEmpty()],
+        quantityVial: [notEmpty(), isPositiveInteger()],
         gnlReceiver: [notEmpty()],
         supplierId: [],
       })}
