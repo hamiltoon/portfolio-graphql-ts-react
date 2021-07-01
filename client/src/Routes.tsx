@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 
 import ListOrders from './pages/ListOrdersPage'
 
-import CreateOrder from './sections/CreateOrder'
+import CreateOrder from './sections/CreateOrderForm'
 
 export const routeMapping = {
   orders: {

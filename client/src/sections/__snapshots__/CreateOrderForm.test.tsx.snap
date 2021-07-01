@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Create order form initial load 1`] = `
+<form
+  className="ui form"
+  onSubmit={[Function]}
+>
+  <div
+    className="disabled field"
+  >
+    <label>
+      Order date
+    </label>
+    <div
+      className="ui disabled input"
+    >
+      <input
+        aria-describedby={null}
+        disabled={true}
+        name="orderDate"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        tabIndex={-1}
+        type="date"
+        value="2021-07-01"
+      />
+    </div>
+  </div>
+  <div
+    className="field"
+  >
+    <label>
+      Desired delivery date
+    </label>
+    <div
+      className="ui input"
+    >
+      <input
+        aria-describedby={null}
+        name="desiredDeliveryDate"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="date"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="field"
+  >
+    <label>
+      GNL-receiver
+    </label>
+    <div
+      className="ui input"
+    >
+      <input
+        aria-describedby={null}
+        name="gnlReceiver"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="field"
+  >
+    <label>
+      Quantity (dose)
+    </label>
+    <div
+      className="ui input"
+    >
+      <input
+        aria-describedby={null}
+        name="quantityDose"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        type="number"
+        value=""
+      />
+    </div>
+  </div>
+  <div
+    className="fields"
+  >
+    <div
+      className="field"
+    >
+      <button
+        aria-describedby={null}
+        className="ui button"
+        onClick={[Function]}
+        type="submit"
+      >
+        Create
+      </button>
+    </div>
+    <button
+      className="ui disabled button"
+      disabled={true}
+      onClick={[Function]}
+      tabIndex={-1}
+      type="button"
+    >
+      Reset
+    </button>
+  </div>
+</form>
+`;

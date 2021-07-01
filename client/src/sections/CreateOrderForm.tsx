@@ -12,7 +12,6 @@ const CreateOrderForm = () => {
   const history = useHistory()
 
   const onSubmit = ({ ...values }: Order) => {
-    console.log(values)
     return postOrder(values).then((newOrder) => {
       if (newOrder.type === 'SUCCESS') history.push(`/list-orders`)
     })
@@ -33,7 +32,7 @@ const CreateOrderForm = () => {
         orderDate: [notEmpty()],
         desiredDeliveryDate: [notEmpty()],
         quantityDose: [notEmpty(), isPositiveInteger()],
-        gnlReceiver: [],
+        gnlReceiver: [notEmpty()],
       })}
       render={({ handleSubmit, form, submitting, pristine }) => {
         return (
